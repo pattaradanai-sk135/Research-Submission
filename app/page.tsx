@@ -42,6 +42,7 @@ export default function SubmissionPage() {
 
       const payload = {
         fullName: data.fullName,
+        position: data.position, // <-- เพิ่มบรรทัดนี้
         email: data.email,
         phone: data.phone,
         affiliation: data.affiliation,
@@ -88,10 +89,10 @@ export default function SubmissionPage() {
       <div className="max-w-2xl w-full bg-white p-8 rounded-xl shadow-sm border border-slate-200">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">
-            ส่งข้อมูลเพื่อทำสัญญา
+            ส่งข้อมูลเพื่อทำสัญญารับทุนโครงการวิจัย ทุนสนับสนุนมูลฐาน FF70
           </h1>
           <p className="text-sm text-slate-500 mt-2">
-            กรุณากรอกข้อมูลและแนบเอกสารเพื่อประกอบการทำสัญญา
+            กรุณากรอกข้อมูลและแนบเอกสารเพื่อประกอบการทำสัญญารับทุน
           </p>
         </div>
 
@@ -99,18 +100,34 @@ export default function SubmissionPage() {
           {/* ชื่อ-นามสกุล */}
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
-              ชื่อ-นามสกุล
+              ชื่อ-นามสกุล ตามบัตรประชาชน
             </label>
             <input
               {...register("fullName")}
               type="text"
-              placeholder="ดร. สมชาย ใจดี"
+              placeholder="นาย สมชาย ใจดี"
               className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
             />
             {errors.fullName && (
               <p className="text-xs text-red-500 mt-1">{errors.fullName.message}</p>
             )}
           </div>
+
+          {/* ตำแหน่ง */}
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+             ตำแหน่ง
+            </label>
+            <input
+            {...register("position")}
+            type="text"
+            placeholder="อาจารย์ / ผู้ช่วยศาสตราจารย์"
+            className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+         />
+          {errors.position && (
+          <p className="text-xs text-red-500 mt-1">{errors.position.message}</p>
+          )}
+        </div>
 
           {/* อีเมล และ เบอร์โทรศัพท์ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

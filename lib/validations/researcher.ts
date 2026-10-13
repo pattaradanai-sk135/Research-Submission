@@ -4,6 +4,7 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
 export const researcherSchema = z.object({
   fullName: z.string().min(2, "กรุณากรอกชื่อ-นามสกุล"),
+  position: z.string().min(1, "กรุณากรอกตำแหน่ง"), // <-- เพิ่มบรรทัดนี้
   email: z.string().email("รูปแบบอีเมลไม่ถูกต้อง"),
   phone: z.string().min(9, "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง"),
   affiliation: z.string().min(2, "กรุณากรอกสังกัด/หน่วยงาน"),
