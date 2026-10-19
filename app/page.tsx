@@ -46,6 +46,7 @@ export default function SubmissionPage() {
         email: data.email,
         phone: data.phone,
         affiliation: data.affiliation,
+        department: data.department,
         pdpaConsent: data.pdpaConsent,
         idCard: {
           name: idCardFile.name,
@@ -162,21 +163,40 @@ export default function SubmissionPage() {
             </div>
           </div>
 
-          {/* สังกัด/หน่วยงาน */}
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
-              สังกัด / หน่วยงาน
-            </label>
-            <input
-              {...register("affiliation")}
-              type="text"
-              placeholder="มหาวิทยาลัย..."
-              className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
-            />
-            {errors.affiliation && (
-              <p className="text-xs text-red-500 mt-1">{errors.affiliation.message}</p>
-            )}
-          </div>
+          {/* สังกัด และ ภาควิชา (บรรทัดเดียวกัน) */}
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  {/* สังกัด / หน่วยงาน */}
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      สังกัด / หน่วยงาน
+    </label>
+    <input
+      {...register("affiliation")}
+      type="text"
+      placeholder="คณะ / สถาบัน / หน่วยงาน"
+      className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+    />
+    {errors.affiliation && (
+      <p className="text-xs text-red-500 mt-1">{errors.affiliation.message}</p>
+    )}
+  </div>
+
+  {/* ภาควิชา */}
+  <div>
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      ภาควิชา
+    </label>
+    <input
+      {...register("department")}
+      type="text"
+      placeholder="ภาควิชา..."
+      className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+    />
+    {errors.department && (
+      <p className="text-xs text-red-500 mt-1">{errors.department.message}</p>
+    )}
+  </div>
+</div>
 
           {/* แนบไฟล์ สำเนาบัตรประชาชน */}
           <div>

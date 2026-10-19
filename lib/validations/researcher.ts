@@ -8,6 +8,7 @@ export const researcherSchema = z.object({
   email: z.string().email("รูปแบบอีเมลไม่ถูกต้อง"),
   phone: z.string().min(9, "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง"),
   affiliation: z.string().min(2, "กรุณากรอกสังกัด/หน่วยงาน"),
+  department: z.string().min(1, "กรุณากรอกภาควิชา"),
   idCard: z
     .custom<FileList>()
     .refine((files) => files?.length > 0, "กรุณาแนบสำเนาบัตรประชาชน")
