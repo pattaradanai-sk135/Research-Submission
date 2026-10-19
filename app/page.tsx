@@ -243,7 +243,7 @@ export default function SubmissionPage() {
 {attendanceType === "representative" && (
   <div className="mt-3 pt-3 border-t border-slate-200">
     <label className="block text-sm font-medium text-slate-700 mb-1">
-      ชื่อ-นามสกุล ผู้รับมอบอำนาจ <span className="text-red-500">*</span>
+      ชื่อ-นามสกุล ผู้รับมอบอำนาจ มาเข้าร่วมรับฟังแต่ไม่มีอำนาจในการลงนามสัญญา <span className="text-red-500">*</span>
     </label>
     <input
       {...register("representativeName")}
