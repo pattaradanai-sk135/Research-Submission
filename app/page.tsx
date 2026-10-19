@@ -23,11 +23,14 @@ export default function SubmissionPage() {
   const {
     register,
     handleSubmit,
+    watch, // <-- เติมคำว่า watch ตรงนี้ครับ
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ResearcherFormValues>({
     resolver: zodResolver(researcherSchema),
   });
+
+  const attendanceType = watch("attendanceType"); // <-- ดึงค่าตัวแปรนี้มาใช้
 
   const onSubmit = async (data: ResearcherFormValues) => {
     try {
@@ -47,6 +50,8 @@ export default function SubmissionPage() {
         phone: data.phone,
         affiliation: data.affiliation,
         department: data.department,
+        attendanceType: data.attendanceType,
+        representativeName: data.attendanceType === "representative" ? data.representativeName : "", // <-- เพิ่มบรรทัดนี้
         pdpaConsent: data.pdpaConsent,
         idCard: {
           name: idCardFile.name,
@@ -197,6 +202,60 @@ export default function SubmissionPage() {
     )}
   </div>
 </div>
+
+{/* เพิ่มส่วนการลงนามสัญญา */}
+<div className="mt-4 p-4 bg-slate-50 border border-slate-200 rounded-lg">
+  <label className="block text-sm font-semibold text-slate-800 mb-1">
+    การลงนามสัญญา
+  </label>
+  <p className="text-xs text-slate-600 mb-3">
+    กำหนดการลงนามสัญญา: <span className="font-medium text-slate-900">วันที่ 3 พฤศจิกายน 2569 เวลา 10.00 - 12.00 น. ณ ห้อง TWP-601</span>
+  </p>
+  
+  <div className="space-y-2">
+    <label className="flex items-center space-x-2 text-sm text-slate-700 cursor-pointer">
+      <input
+        {...register("attendanceType")}
+        type="radio"
+        value="self"
+        className="text-slate-900 focus:ring-slate-900"
+      />
+      <span>มาลงนามด้วยตนเอง</span>
+    </label>
+
+    <label className="flex items-center space-x-2 text-sm text-slate-700 cursor-pointer">
+      <input
+        {...register("attendanceType")}
+        type="radio"
+        value="representative"
+        className="text-slate-900 focus:ring-slate-900"
+      />
+      <span>มอบอำนาจให้ตัวแทนมาดำเนินการแทน</span>
+    </label>
+  </div>
+
+  {errors.attendanceType && (
+    <p className="text-xs text-red-500 mt-2">{errors.attendanceType.message}</p>
+  )}
+</div>
+
+{/* เพิ่มส่วนนี้: แสดงช่องกรอกชื่อเฉพาะตอนเลือกมอบอำนาจ */}
+{attendanceType === "representative" && (
+  <div className="mt-3 pt-3 border-t border-slate-200">
+    <label className="block text-sm font-medium text-slate-700 mb-1">
+      ชื่อ-นามสกุล ผู้รับมอบอำนาจ <span className="text-red-500">*</span>
+    </label>
+    <input
+      {...register("representativeName")}
+      type="text"
+      placeholder="ระบุชื่อ-นามสกุล ผู้รับมอบอำนาจ"
+      className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+    />
+    {errors.representativeName && (
+      <p className="text-xs text-red-500 mt-1">{errors.representativeName.message}</p>
+    )}
+  </div>
+)}
 
           {/* แนบไฟล์ สำเนาบัตรประชาชน */}
           <div>
