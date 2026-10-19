@@ -230,7 +230,7 @@ export default function SubmissionPage() {
         value="representative"
         className="text-slate-900 focus:ring-slate-900"
       />
-      <span>มอบอำนาจให้ตัวแทนมาดำเนินการแทน</span>
+      <span>มอบอำนาจให้ตัวแทนมาเข้าร่วมรับฟัง</span>
     </label>
   </div>
 
