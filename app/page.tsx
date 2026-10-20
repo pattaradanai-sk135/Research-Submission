@@ -278,7 +278,7 @@ export default function SubmissionPage() {
           {/* แนบไฟล์ รูปภาพโปสเตอร์ */}
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
-              แนบรูปภาพโปสเตอร์ (PNG, JPG ไม่เกิน 5MB)
+              แนบรูปภาพสำหรับการทำโปสเตอร์แสดงความยินดี (PNG, JPG ไม่เกิน 5MB)
             </label>
             <input
               {...register("poster")}
